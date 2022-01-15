@@ -1,0 +1,158 @@
+﻿@model Section
+@{
+    Layout = "_Layout.Dashboard";
+    ViewData["Title"] = "Edit Page";
+}
+
+<h1>Edit Page</h1>
+
+<form asp-controller="Admin" asp-action="SavePage" method="post" class="mb-2">
+    <input type="hidden" name="title" value="@Model.ID" />
+    <div class="form-group">
+        <div id="contentEdit" contenteditable="true" ondrop="drop(event)" ondragover="allowDrop(event)">@Model.ID</div>
+        <textarea name="content" id="contentReceive">@Model.Content</textarea>
+    </div>
+        @*<div class="form-group">
+                <div id="contentSection" contenteditable="true" name="contentSection">@Model.ContentSection</div>
+            </div>*@
+        <div class="text-center">
+            <button type="submit" id="addContent" class="btn btn-primary">Save</button>
+        </div>
+</form>
+
+<div class="card container mb-2">
+    <div class="card-body">
+        <p class="mb-0 fs-3">Drag the element you want into the preview screen</p>
+    </div>
+</div>
+
+<div class="card container mb-2 col-8">
+    <div id="dragElement" class="card-body row">
+        <div class="col-2">
+            <a href="#about" id="drag1" draggable="true" ondragstart="drag(event)" class="btn btn-info scrollto"> Link button </a>
+        </div>
+        <div class="col-2">
+            <h1 id="header1" draggable="true" ondragstart="drag(event)"> Header 1 </h1>
+            <h2 id="header2" draggable="true" ondragstart="drag(event)"> Header 2 </h2>
+            <h3 id="header3" draggable="true" ondragstart="drag(event)"> Header 3 </h3>
+            <h4 id="header4" draggable="true" ondragstart="drag(event)"> Header 4 </h4>
+        </div>
+        <div class="col-2">
+            <p id="paragraphe" class="fs-2" draggable="true" ondragstart="drag(event)"> Paragraphe </p>
+        </div>
+        <div class="col-2">
+            <div id="division" class="fs-2" draggable="true" ondragstart="drag(event)"> Division </div>
+
+        </div>
+    </div>
+</div>
+<div class="card container mb-2 col-3">
+    <div id="chooseColor" class="card-body row">
+        <p class="mb-0 fs-3">Choose the colour of your element</p>
+        <div class="col-1 mx-1 text-center btn btn-primary">
+            primary
+        </div>
+        <div class="col-1 mx-1 text-center btn btn-secondary">
+            secondary
+        </div>
+        <div class="col-1 mx-1 text-center btn btn-success">
+            success
+        </div>
+        <div class="col-1 mx-1 text-center btn btn-danger">
+            danger
+        </div>
+        <div class="col-1 mx-1 text-center btn btn-warning">
+            warning
+        </div>
+        <div class="col-1 mx-1 text-center btn btn-info">
+            info
+        </div>
+        <div class="col-1 mx-1 text-center btn btn-light">
+            light
+        </div>
+        <div class="col-1 mx-1 text-center btn btn-dark">
+            dark
+        </div>
+        <div class="col-1 mx-1 text-center btn btn-white btn-foreground">
+            white
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+
+    <script>
+        //ELEMENT COLOR
+        $(document).ready(function () {
+            $(".colors").click(function (e) {
+                e.preventDefault();
+                var colorsClass = "bg-" + $(this).html();
+                console.log(colorsClass);
+                var lastClass = $('#first').attr('class').split(' ').pop();
+                $("#first").removeClass(lastClass);
+                $("#first").addClass(colorsClass);
+                console.log("ok");
+
+            });
+        });
+
+        //DRAG AND DROP
+        function allowDrop(ev) { ev.preventDefault(); }
+        function drag(ev) {
+            ev.dataTransfer.setData("text/html", ev.target.id);
+        }
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text/html");
+            /* If you use DOM manipulation functions, their default behaviour it not to
+               copy but to alter and move elements. By appending a ".cloneNode(true)",
+               you will not move the original element, but create a copy. */
+            for (var i = 0; i < 10; i++) {
+                console.log(i);
+            }
+            var nodeCopy = document.getElementById(data).cloneNode(true);
+            nodeCopy.id = 'newId_' + Math.random().toString(36).substr(2, 4); /* We cannot use the same ID */
+            ev.target.appendChild(nodeCopy);
+        }
+
+
+        //CONTENT EDITOR
+        var el = document.querySelector('#contentEdit')
+        window.addEventListener('load', content);
+        el.addEventListener('blur', content);
+
+        function content() {
+            var map = { amp: '&', lt: '<', gt: '>', quot: '"', '#039': "'" }
+            var html = el.innerHTML.replace(/&([^;]+);/g, (m, c) => map[c]);
+            el.innerHTML = html;
+        }
+
+        //INPUT TEXTAREA
+        $(document).ready(function () {
+            //$("#contentEdit").mouseleave(function (e) {
+            //    e.preventDefault();
+            //    var text = $("#contentEdit").html();
+            //    $("#contentReceive").text(text);
+            //    console.log(text);
+            //});
+            CKEDITOR.inline('contentReceive');
+        });
+
+                                    //INPUT VALUE
+
+                                    //var ins = document.querySelector("#ins")
+                                    //ins.addEventListener('click', function () {
+                                    //    var str = document.querySelector("#text").value;
+                                    //    console.log(str);
+                                    //    document.querySelector("#welcome").innerHTML = str;
+                                    //});
+                                    //var welc = document.querySelector(".welcome");
+                                    //welc.addEventListener('click', function () {
+                                    //    console.log("ok");
+                                    //});
+
+    </script>
+}
+

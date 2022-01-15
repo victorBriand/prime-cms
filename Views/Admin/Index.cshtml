@@ -1,0 +1,214 @@
+﻿
+@{
+    Layout = "_Layout.Dashboard";
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="col-xl-10 mx-auto">Dashboard</h1>
+<ul class="list-inline col-xl-10 mx-auto">
+    <li class="list-inline-item">
+        <a asp-controller="Admin" class="muted-link">
+            <span class="text-small align-middle me-2">DASHBOARD</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-chevron-right"><path d="M7 4L12.6464 9.64645C12.8417 9.84171 12.8417 10.1583 12.6464 10.3536L7 16"></path></svg>
+        </a>
+    </li>
+</ul>
+    <!-- Buttons Start -->
+    <div class="col-xl-10 mx-auto mb-5">
+        <section class="scroll-section" id="buttons">
+            <div class="d-flex justify-content-center mb-4">
+                <h1 class="small-title fs-3">Pages list</h1>
+                @*<button class="btn btn-icon btn-icon-only btn-sm btn-background-alternate mt-n2 shadow"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        aria-haspopup="true">
+                    <i data-cs-icon="more-horizontal"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end shadow">
+                    <a class="dropdown-item" href="#">Reload</a>
+                    <a class="dropdown-item" href="#">Stats</a>
+                    <a class="dropdown-item" href="#">Details</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Delete</a>
+                </div>*@
+            </div>
+            <div class="scroll-out">
+                <div class="scroll-by-count" data-count="4">
+                    <div class="card mb-2">
+                        <div class="row g-0 sh-25 sh-sm-20">
+                            <div class="col-sm-auto h-50">
+                                <p class="text-center">
+
+                                <img src="img/illustration/home_il.jpg" alt="alternate text" class="card-img card-img-horizontal sw-14 sw-sm-20 mx-3" />
+                                </p>
+                                @*<img src="img/product/small/product-2.webp" alt="alternate text" class="card-img card-img-horizontal sw-20" />*@
+                            </div>
+                            <div class="col-sm">
+                                <div class="card-body pt-0 pb-0 h-100">
+                                    <div class="row g-0 h-sm-100 align-content-center">
+                                        <div class="col-12 col-sm-7 d-flex flex-column mb-2 mb-md-0">
+                                            <div class="fs-3  fs-sm-4 mx-auto mx-sm-0">Home</div>
+                                            <div class="text-medium text-muted text-truncate d-none d-sm-block">Home page of the website</div>
+                                        </div>
+                                        <div class="col-12 col-sm-3 d-flex align-items-center justify-content-center justify-content-sm-end">
+                                            <a class="btn btn-sm btn-icon btn-icon-start btn-outline-primary ms-1" type="button" asp-controller="Admin" asp-action="EditSection" asp-route-title="Home"><i data-cs-icon="edit-square" data-cs-size=""></i>
+                                            </a>
+
+
+                                                @*<button class="btn btn-sm btn-icon btn-icon-start btn-outline-primary ms-1" type="button">
+                <i data-cs-icon="edit-square" data-cs-size="15"></i>
+                <span class="d-none d-xxl-inline-block">Edit</span>
+            </button>
+            <button class="btn btn-sm btn-icon btn-icon-start btn-outline-primary ms-1" type="button">
+                <i data-cs-icon="bin" data-cs-size="15"></i>
+                <span class="d-none d-xxl-inline-block">Delete</span>
+            </button>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-2">
+                        <div class="row g-0 sh-25 sh-sm-20">
+                            <div class="col-sm-auto h-50">
+                                <p class="text-center">
+
+                                <img src="img/illustration/agency_il.jpg" alt="alternate text" class="card-img card-img-horizontal sw-14 sw-sm-20 mx-3" />
+                                </p>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card-body pt-0 pb-0 h-100">
+                                    <div class="row g-0 h-sm-100 align-content-center">
+                                        <div class="col-12 col-sm-7 d-flex flex-column mb-2 mb-md-0">
+                                            <div class="fs-3  fs-sm-4 mx-auto mx-sm-0">Agência</div>
+                                            <div class="text-medium text-muted text-truncate d-none d-sm-block">
+                                                15 anos de experiência no desenvolvimento de soluções
+                                                integradas de comunicação e tecnologia
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-3 d-flex align-items-center justify-content-center justify-content-sm-end">
+                                            <a class="btn btn-sm btn-icon btn-icon-start btn-outline-primary ms-1" type="button" asp-controller="Admin" asp-action="EditSection" asp-route-title="Agencia">
+                                                <i data-cs-icon="edit-square" data-cs-size="15"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-2">
+                        <div class="row g-0 sh-25 sh-sm-20">
+                            <div class="col-sm-auto h-50">
+                                <p class="text-center">
+
+                                    <img src="img/illustration/platform_il.jpg" alt="alternate text" class="card-img card-img-horizontal sw-14 sw-sm-20 mx-3" />
+                                </p>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card-body pt-0 pb-0 h-100">
+                                    <div class="row g-0 h-sm-100 align-content-center">
+                                        <div class="col-12 col-sm-7 d-flex flex-column mb-2 mb-md-0">
+                                            <div class="fs-3 fs-sm-4 mx-auto mx-sm-0">Plataformas Digitais</div>
+                                            <div class="text-medium text-muted text-truncate d-none d-sm-block">
+                                                Desenvolvemos plataformas digitais
+                                                especificas para o seu negócio!
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-3 d-flex align-items-center justify-content-center justify-content-sm-end">
+                                            <a class="btn btn-sm btn-icon btn-icon-start btn-outline-primary ms-1" type="button" asp-controller="Admin" asp-action="EditSection" asp-route-title="Plataforma">
+                                                <i data-cs-icon="edit-square" data-cs-size="15"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-2">
+                        <div class="row g-0 sh-25 sh-sm-20">
+                            <div class="col-sm-auto h-50">
+                                <p class="text-center">
+
+                                    <img src="img/illustration/design_il.jpg" alt="alternate text" class="card-img card-img-horizontal sw-14 sw-sm-20 mx-3" />
+                                </p>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card-body pt-0 pb-0 h-100">
+                                    <div class="row g-0 h-sm-100 align-content-center">
+                                        <div class="col-12 col-sm-7 d-flex flex-column mb-2 mb-md-0">
+                                            <div class="fs-3  fs-sm-4 mx-auto mx-sm-0">Design</div>
+                                            <div class="text-medium text-muted text-truncate d-none d-sm-block">
+                                                Criamos e inovamos a comunicação corporativa das empresas
+                                                criando soluções de comunicação criativas e eficazes.
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-3 d-flex align-items-center justify-content-center justify-content-sm-end">
+                                            <a class="btn btn-sm btn-icon btn-icon-start btn-outline-primary ms-1" type="button" asp-controller="Admin" asp-action="EditSection" asp-route-title="Design">
+                                                <i data-cs-icon="edit-square" data-cs-size="30"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-2">
+                        <div class="row g-0 sh-25 sh-sm-20">
+                            <div class="col-sm-auto h-50">
+                                <p class="text-center">
+
+                                    <img src="img/illustration/marketing_il.jpg" alt="alternate text" class="card-img card-img-horizontal sw-14 sw-sm-20 mx-3" />
+                                </p>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card-body pt-0 pb-0 h-100">
+                                    <div class="row g-0 h-sm-100 align-content-center">
+                                        <div class="col-12 col-sm-7 d-flex flex-column mb-2 mb-md-0">
+                                            <div class="fs-3  fs-sm-4 mx-auto mx-sm-0">Marketing Digital</div>
+                                            <div class="text-medium text-muted text-truncate d-none d-sm-block">
+                                                Aumente a exposição da sua empresa comunicando e
+                                                promovendo a sua empresa de forma regular e estratégica.
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-3 d-flex align-items-center justify-content-center justify-content-sm-end">
+                                            <a class="btn btn-sm btn-icon btn-icon-start btn-outline-primary ms-1" type="button" asp-controller="Admin" asp-action="EditSection" asp-route-title="Marketing">
+                                                <i data-cs-icon="edit-square" data-cs-size="15"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-2">
+                        <div class="row g-0 sh-25 sh-sm-20">
+                            <div class="col-sm-auto h-50">
+                                <p class="text-center">
+
+                                    <img src="img/illustration/privacy_il.jpg" alt="alternate text" class="card-img card-img-horizontal sw-14 sw-sm-20 mx-3" />
+                                </p>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card-body pt-0 pb-0 h-100">
+                                    <div class="row g-0 h-sm-100 align-content-center">
+                                        <div class="col-12 col-sm-7 d-flex flex-column mb-2 mb-md-0">
+                                            <div class="fs-3  fs-sm-4 mx-auto mx-sm-0">Privacy</div>
+                                            <div class="text-medium text-muted text-truncate d-none d-sm-block">Privacy page of the website</div>
+                                        </div>
+                                        <div class="col-12 col-sm-3 d-flex align-items-center justify-content-center justify-content-sm-end">
+                                            <a class="btn btn-sm btn-icon btn-icon-start btn-outline-primary ms-1" type="button" asp-controller="Admin" asp-action="EditSection" asp-route-title="Privacy">
+                                                <i data-cs-icon="edit-square" data-cs-size="15"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Buttons End -->

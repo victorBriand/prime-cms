@@ -1,0 +1,34 @@
+﻿@model WebApplicationCMS.Models.Section
+
+@{
+    ViewData["Title"] = "DeleteSection";
+    Layout = "~/Views/Shared/_Layout.Dashboard.cshtml";
+}
+
+<h1>DeleteSection</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Section</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TitleID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TitleID)
+        </dd>
+    </dl>
+    
+    <form asp-action="DeleteSection">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

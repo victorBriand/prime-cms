@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebApplicationCMS.Models.Section>
+
+@{
+    ViewData["Title"] = "EditSection";
+    Layout = "_Layout.Dashboard";
+}
+
+<h1>EditSection</h1>
+<li class="list-inline-item">
+    <a asp-controller="Admin" asp-action="Index" class="muted-link">
+        <span class="text-small align-middle me-2">DASHBOARD</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-chevron-right"><path d="M7 4L12.6464 9.64645C12.8417 9.84171 12.8417 10.1583 12.6464 10.3536L7 16"></path></svg>
+    </a>
+</li>
+<li class="list-inline-item">
+    <a asp-controller="Admin" asp-action="EditSection" asp-route-title="@ViewData["page"]" class="muted-link">
+        <span class="text-small align-middle me-2">@ViewData["page"].ToString().ToUpper()</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-chevron-right"><path d="M7 4L12.6464 9.64645C12.8417 9.84171 12.8417 10.1583 12.6464 10.3536L7 16"></path></svg>
+    </a>
+</li>
+
+<p>
+    <a asp-action="AddSection">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Page.Title)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Page.Title)
+                </td>
+                <td>
+                    <a asp-action="EditPage" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="DeleteSection" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

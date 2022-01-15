@@ -1,0 +1,30 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+            <div class="mb-5">
+                <h2 class="cta-1 mb-0 text-primary">Welcome,</h2>
+                <h2 class="cta-1 text-primary">let's Login!</h2>
+            </div>
+            <form id="loginForm" method="post" class="tooltip-end-bottom">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="mb-3 filled form-group tooltip-end-top">
+                    <i data-cs-icon="email"></i>
+                    <input asp-for="Input.Email" class="form-control" placeholder="Email" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3 filled form-group tooltip-end-top">
+                    <i data-cs-icon="lock-off"></i>
+                    <input asp-for="Input.Password" class="form-control pe-7" placeholder="Password" />
+                    <a asp-page="./ForgotPassword" class="text-small position-absolute t-3 e-3">Forgot?</a>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-lg btn-primary">Login</button>
+            </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
