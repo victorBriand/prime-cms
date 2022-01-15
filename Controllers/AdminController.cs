@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApplicationCMS.Data;
 using WebApplicationCMS.Models;
+using WebApplicationCMS.ViewModel;
 
 namespace WebApplicationCMS.Controllers
 {
@@ -24,27 +25,42 @@ namespace WebApplicationCMS.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var sectionsList = _dbContext.Sections
+                .Include(x => x.Page)
+                .ToList();
+            return View(sectionsList);
         }
-        public IActionResult EditSection(string title)
+        [HttpPost]
+        public IActionResult EditSection([Bind("Id,Title,Content,Page")] Section model)
         {
-            var page = _dbContext.Pages.FirstOrDefault(x => x.Title == title);
-            ViewData["page"] = title;
-
-            if (title == null)
-            {
-                return Redirect("Index");
-            }
 
 
-            Page sections = _dbContext.Pages
-                .Include(sec => sec.Sections)
-                .Single(sec => sec.Title == title);
-            //IList<Section> sections = _dbContext.Sections.Include(s => s.Page).Where(s =>s.TitleID == title).ToList();
+            var section = _dbContext.Sections.Where(x => x.ID == model.ID).FirstOrDefault();
 
-            ViewBag.title = "Page is " + sections.Title;
+            section = model;
 
-            return View(sections.Sections);
+            _dbContext.Update(section);
+            _dbContext.SaveChanges();
+
+            return View(section);
+
+            //var page = _dbContext.Pages.FirstOrDefault(x => x.Title == title);
+            //ViewData["page"] = title;
+
+            //if (title == null)
+            //{
+            //    return Redirect("Index");
+            //}
+
+
+            //Page sections = _dbContext.Pages
+            //    .Include(sec => sec.Sections)
+            //    .Single(sec => sec.Title == title);
+            ////IList<Section> sections = _dbContext.Sections.Include(s => s.Page).Where(s =>s.TitleID == title).ToList();
+
+            //ViewBag.title = "Page is " + sections.Title;
+
+            //return View(sections.Sections);
         }
         public IActionResult EditPage(int id) 
         {
@@ -61,7 +77,9 @@ namespace WebApplicationCMS.Controllers
                 //INSERT INTO Pages VALUE page
                 _dbContext.Sections.Add(section);
                 _dbContext.SaveChanges();
+                return RedirectToAction(nameof(Index));
             }
+            
             return View(section);
         }
         //Données en POST car nombreuses
@@ -91,18 +109,31 @@ namespace WebApplicationCMS.Controllers
         }
 
 
-
+        [HttpGet]
         public IActionResult AddSection()
         {
-            ViewBag.Pages = new SelectList(_dbContext.Pages, "Title");
-            return View();
+            //ViewBag.Pages = new SelectList(_dbContext.Pages, "Title");
+            var pagesList = _dbContext.Pages.ToList();
+            var model = new AdminAddSectionViewModel
+            {
+                PageList = pagesList,
+            };
+
+            return View(model);
         }
         
         [HttpPost]
-        public IActionResult AddSection(Section section)
+        public IActionResult AddSection([Bind("Content,Page")] AdminAddSectionViewModel model)
         {
-            _dbContext.Sections.Add(section);
+            var page = _dbContext.Pages.Where(x => x.Id == model.Page.Id).FirstOrDefault();
+            var section = new Section
+            {
+                Content = model.Content,
+                Page = page
+            };
+            _dbContext.Add(section);
             _dbContext.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

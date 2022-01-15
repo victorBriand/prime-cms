@@ -1,4 +1,4 @@
-﻿@model WebApplicationCMS.Models.Section
+﻿@model WebApplicationCMS.ViewModel.AdminAddSectionViewModel
 
 @{
     ViewData["Title"] = "AddSection";
@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AddSection">
+        <form asp-action="AddSection" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Content" class="control-label"></label>
@@ -19,12 +19,7 @@
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Page" class="control-label"></label>
-                <input asp-for="Page" class="form-control" />
-                <span asp-validation-for="Page" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <select id="PageList" class="form-control" asp-items="@(new SelectList(ViewBag.Pages,"Title"))"></select>
+                <select asp-for="Page.Id" class="form-control" asp-items="@(new SelectList(Model.PageList, "Id", "Title"))"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

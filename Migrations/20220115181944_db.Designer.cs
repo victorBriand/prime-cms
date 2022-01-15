@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplicationCMS.Data;
 
-namespace WebApplicationCMS.Data.Migrations
+namespace WebApplicationCMS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220107140641_TestPageFK")]
-    partial class TestPageFK
+    [Migration("20220115181944_db")]
+    partial class db
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -223,13 +223,20 @@ namespace WebApplicationCMS.Data.Migrations
 
             modelBuilder.Entity("WebApplicationCMS.Models.Page", b =>
                 {
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
 
-                    b.HasKey("Title");
+                    b.Property<string>("Title")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Pages");
                 });
@@ -244,15 +251,15 @@ namespace WebApplicationCMS.Data.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PageTitle")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("PageId")
+                        .HasColumnType("int");
 
                     b.Property<string>("TitleID")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("PageTitle");
+                    b.HasIndex("PageId");
 
                     b.ToTable("Sections");
                 });
@@ -312,7 +319,7 @@ namespace WebApplicationCMS.Data.Migrations
                 {
                     b.HasOne("WebApplicationCMS.Models.Page", "Page")
                         .WithMany("Sections")
-                        .HasForeignKey("PageTitle");
+                        .HasForeignKey("PageId");
 
                     b.Navigation("Page");
                 });

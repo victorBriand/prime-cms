@@ -1,10 +1,32 @@
-﻿
+﻿@model List<Section>
 @{
     Layout = "_Layout.Dashboard";
     ViewData["Title"] = "Index";
 }
 
-<h1 class="col-xl-10 mx-auto">Dashboard</h1>
+
+<table>
+    <thead>
+        <tr>
+        <th>@Html.DisplayNameFor(m => m[0].Content)</th>
+        <th>@Html.DisplayNameFor(m => m[0].Page.Title)</th>
+        <th>@Html.DisplayNameFor(m => m[0].Page.Description)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+       {
+        <tr>
+            <td>@item.Content</td>
+            <td>@item.Page.Title</td>
+            <td>@item.Page.Description</td>
+        </tr>
+       }
+    </tbody>
+</table>
+
+
+@*<h1 class="col-xl-10 mx-auto">Dashboard</h1>
 <ul class="list-inline col-xl-10 mx-auto">
     <li class="list-inline-item">
         <a asp-controller="Admin" class="muted-link">
@@ -32,7 +54,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Delete</a>
                 </div>*@
-            </div>
+@*            </div>
             <div class="scroll-out">
                 <div class="scroll-by-count" data-count="4">
                     <div class="card mb-2">
@@ -43,7 +65,7 @@
                                 <img src="img/illustration/home_il.jpg" alt="alternate text" class="card-img card-img-horizontal sw-14 sw-sm-20 mx-3" />
                                 </p>
                                 @*<img src="img/product/small/product-2.webp" alt="alternate text" class="card-img card-img-horizontal sw-20" />*@
-                            </div>
+@*                            </div>
                             <div class="col-sm">
                                 <div class="card-body pt-0 pb-0 h-100">
                                     <div class="row g-0 h-sm-100 align-content-center">
@@ -53,7 +75,7 @@
                                         </div>
                                         <div class="col-12 col-sm-3 d-flex align-items-center justify-content-center justify-content-sm-end">
                                             <a class="btn btn-sm btn-icon btn-icon-start btn-outline-primary ms-1" type="button" asp-controller="Admin" asp-action="EditSection" asp-route-title="Home"><i data-cs-icon="edit-square" data-cs-size=""></i>
-                                            </a>
+                                            </a>*@
 
 
                                                 @*<button class="btn btn-sm btn-icon btn-icon-start btn-outline-primary ms-1" type="button">
@@ -64,7 +86,7 @@
                 <i data-cs-icon="bin" data-cs-size="15"></i>
                 <span class="d-none d-xxl-inline-block">Delete</span>
             </button>*@
-                                        </div>
+@*                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -210,5 +232,4 @@
                 </div>
             </div>
         </section>
-    </div>
-    <!-- Buttons End -->
+    </div>*@

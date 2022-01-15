@@ -11,6 +11,7 @@ namespace WebApplicationCMS.Models
         public string Content { get; set; }
 
         public string TitleID { get; set; }
+
         public virtual Page Page { get; set; }
     }
 }
